@@ -45,9 +45,6 @@ jobs:
 
     - name: Print Version
       run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
-            
-    - name: Compile
-      run: mvn -B compile --file pom.xml
       
     - name: Build a package
       run: mvn -B package --file pom.xml
