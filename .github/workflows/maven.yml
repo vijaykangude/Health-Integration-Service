@@ -28,7 +28,16 @@ jobs:
         cache: 'maven'
     - name: Build with Maven
       run: mvn clean install
- 
+
+
+  deploy:
+    runs-on: ubuntu-18.04
+    needs: build
+    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v1
+    
     - uses: mr-smithers-excellent/docker-build-push@v5
     name: Build & push Docker image
     with:
