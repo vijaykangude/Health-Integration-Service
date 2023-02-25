@@ -30,7 +30,7 @@ jobs:
     - name: Bump jar version
       id: bump
       run: |
-        OLD_VERSION=$(cd $POMPATH && mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        OLD_VERSION=$(cd ./ && mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         BUMP_MODE="none"
         old="$OLD_VERSION"
         parts=( ${old//./ } )
