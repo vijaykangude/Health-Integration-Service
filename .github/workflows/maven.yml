@@ -20,7 +20,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: 
+    uses: actions/checkout@v3
     - uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
@@ -30,7 +31,7 @@ jobs:
     - name: Bump jar version
       id: bump
       run: |
-        OLD_VERSION=$(cd ./ && mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        OLD_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         BUMP_MODE="none"
         old="$OLD_VERSION"
         parts=( ${old//./ } )
