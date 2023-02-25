@@ -34,19 +34,17 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
         
-    - name: Bump jar version
+    - name: Checkout Latest Commit
+      uses: actions/checkout@v2
+
+    - name: Bump Version
       id: bump
-      run: |
-        POMPATH=/
-        OLD_VERSION=$(cd $POMPATH && mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-        BUMP_MODE="none"
-        old="$OLD_VERSION"
-        parts=( ${old//./ } )
-        bv=$((parts[2] + 1))
-        NEW_VERSION="${parts[0]}.${parts[1]}.${bv}"
-        echo "pom.xml at" $POMPATH "will be bumped from" $OLD_VERSION "to" $NEW_VERSION
-        mvn -q versions:set -DnewVersion="${NEW_VERSION}" --file $POMPATH/pom.xml
-        echo ::set-output name=jar_version::${NEW_VERSION}
+      uses: nnichols/maven-version-bump-action@v3
+      with:
+        github-token: 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
+
+    - name: Print Version
+      run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
             
     - name: Compile
       run: mvn -B compile --file pom.xml
