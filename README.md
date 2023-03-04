@@ -17,4 +17,6 @@ docker run --name container_name -d -p 8080:8080 healthintegrationservice .
 
 
 ### Endpoints:
-localhost:8080/get: returns hello world
+1. localhost:8080: returns welcome to spring boot app
+2. localhost:8080/get: returns hello world
+3. localhost:8080/swagger-ui: returns ui page for all controller
