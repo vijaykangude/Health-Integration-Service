@@ -1,0 +1,38 @@
+<configuration>
+    <regexVersionTag>(1[.]0[.](?![5-9][0-9]|[0-9]{3,})[0-9]+)</regexVersionTag>
+    <mavenLike>false</mavenLike>
+    <autoIncrementPatch>true</autoIncrementPatch>
+    <useCommitDistance>true</useCommitDistance>
+    <useDirty>false</useDirty>
+    <useGitCommitId>false</useGitCommitId>
+    <gitCommitIdLength>8</gitCommitIdLength>  <!-- between [8,40] -->
+    <nonQualifierBranches></nonQualifierBranches> <!-- comma separated, example "master,integration" -->
+    <useDefaultBranchingPolicy>false</useDefaultBranchingPolicy>   <!-- uses jgitver#BranchingPolicy#DEFAULT_FALLBACK as fallback branch policy-->
+    <branchPolicies>
+        <branchPolicy>
+            <pattern>(master)</pattern>
+            <transformations>
+                <transformation>IGNORE</transformation>
+            </transformations>
+        </branchPolicy>
+        <branchPolicy>
+            <pattern>(release/.*)</pattern>
+            <transformations>
+                <transformation>IGNORE</transformation>
+            </transformations>
+        </branchPolicy>
+        <branchPolicy>
+            <pattern>(build/.*)</pattern>
+            <transformations>
+                <transformation>REPLACE_UNEXPECTED_CHARS_UNDERSCORE</transformation>
+                <transformation>LOWERCASE_EN</transformation>
+            </transformations>
+        </branchPolicy>
+        <branchPolicy>
+            <pattern>(.*)</pattern>
+            <transformations>
+                <transformation>IGNORE</transformation>
+            </transformations>
+        </branchPolicy>
+    </branchPolicies>
+</configuration>
