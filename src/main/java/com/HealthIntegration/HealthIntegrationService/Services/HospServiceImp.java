@@ -41,8 +41,8 @@ public class HospServiceImp implements HospService{
 
     @Override
     public Hospital updateProduct(Hospital hospital) {
-        Hospital existingProduct = repository.findById(hospital.getId()).orElse(null);
-        existingProduct.setName(hospital.getName());
+        Hospital existingHospital = repository.findById(hospital.getId()).orElse(null);
+        existingHospital.setName(hospital.getName());
         return repository.save(existingProduct);
     }
 
