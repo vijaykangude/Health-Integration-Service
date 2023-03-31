@@ -43,7 +43,7 @@ public class HospServiceImp implements HospService{
     public Hospital updateProduct(Hospital hospital) {
         Hospital existingHospital = repository.findById(hospital.getId()).orElse(null);
         existingHospital.setName(hospital.getName());
-        return repository.save(existingProduct);
+        return repository.save(existingHospital);
     }
 
 }
